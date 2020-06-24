@@ -311,5 +311,48 @@ namespace Screenote
                     break;
             }
         }
+
+        private void noteIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (this.Visible == false)
+                {
+                    this.Location = new Point(System.Windows.Forms.Screen.FromPoint(Cursor.Position).Bounds.X, System.Windows.Forms.Screen.FromPoint(Cursor.Position).Bounds.Y);
+                    this.Width = System.Windows.Forms.Screen.FromPoint(Cursor.Position).Bounds.Width;
+                    this.Height = System.Windows.Forms.Screen.FromPoint(Cursor.Position).Bounds.Height;
+
+                    bitmapScreen = new Bitmap(this.Width, this.Height);
+                    using (Graphics graphics = Graphics.FromImage(bitmapScreen as Image))
+                    {
+                        graphics.CopyFromScreen(System.Windows.Forms.Screen.FromPoint(Cursor.Position).Bounds.X, System.Windows.Forms.Screen.FromPoint(Cursor.Position).Bounds.Y, 0, 0, this.Size);
+                    }
+
+                    picture.Image = bitmapScreen;
+                    graphicsScreen = picture.CreateGraphics();
+
+                    AnimateWindow(this.Handle, 8, 0x00000010 + 0x00080000 + 0x00020000);
+                    SetForegroundWindow(this.Handle);
+                    this.Visible = true;
+                    magnifier.Visible = true;
+                    Cursor.Hide();
+                }
+                else
+                {
+                    this.Visible = false;
+                    magnifier.Visible = false;
+                    Cursor.Show();
+                    GC.Collect();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        private void toolStripMenuItem_close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

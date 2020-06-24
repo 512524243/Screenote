@@ -16,10 +16,16 @@
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Screen));
             this.picture = new System.Windows.Forms.PictureBox();
             this.magnifier = new System.Windows.Forms.PictureBox();
+            this.noteIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.noteicon_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem_close = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.magnifier)).BeginInit();
+            this.noteicon_contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // picture
@@ -47,6 +53,28 @@
             this.magnifier.TabStop = false;
             this.magnifier.Visible = false;
             // 
+            // noteIcon
+            // 
+            this.noteIcon.ContextMenuStrip = this.noteicon_contextMenuStrip;
+            this.noteIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("noteIcon.Icon")));
+            this.noteIcon.Text = "Screen";
+            this.noteIcon.Visible = true;
+            this.noteIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.noteIcon_MouseDoubleClick);
+            // 
+            // noteicon_contextMenuStrip
+            // 
+            this.noteicon_contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_close});
+            this.noteicon_contextMenuStrip.Name = "noteicon_contextMenuStrip";
+            this.noteicon_contextMenuStrip.Size = new System.Drawing.Size(181, 48);
+            // 
+            // toolStripMenuItem_close
+            // 
+            this.toolStripMenuItem_close.Name = "toolStripMenuItem_close";
+            this.toolStripMenuItem_close.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem_close.Text = "关 闭";
+            this.toolStripMenuItem_close.Click += new System.EventHandler(this.toolStripMenuItem_close_Click);
+            // 
             // Screen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -68,6 +96,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Screen_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.magnifier)).EndInit();
+            this.noteicon_contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -75,5 +104,8 @@
 
         private System.Windows.Forms.PictureBox picture;
         private System.Windows.Forms.PictureBox magnifier;
+        private System.Windows.Forms.NotifyIcon noteIcon;
+        private System.Windows.Forms.ContextMenuStrip noteicon_contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_close;
     }
 }

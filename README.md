@@ -12,3 +12,7 @@ PrintScreen / Pause 进入截图状态：
 - Esc 键 / 鼠标右键：销毁贴图。
 
 Shift+PrintScreen / Shift+Pause 将剪贴板中的图片贴到屏幕上。
+
+右下角增加图标显示
+-图标增加双击截图
+-图标增加右键退出菜单
